@@ -1,0 +1,1 @@
+web: gunicorn JobFindingPortal.wsgi —-log-file -
