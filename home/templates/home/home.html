@@ -1,0 +1,15 @@
+{% extends "home/main.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-4">Hey There! Welcome to ThapSpace-Jobs</h1>
+    <p class="lead">This is the ThapSpace job portal, where you get all recent updates about new openings both offcampus and oncampus</p>
+    <hr class="my-4">
+    <p>You just need to click on the apply button to apply for the job.</p>
+    <p>You can also download the Job Description by simply clicking the download button</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{% url 'jobs' %}">Explore Jobs</a>
+    </p>
+  </div>
+{% endblock content %}

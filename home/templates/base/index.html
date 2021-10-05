@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<style>
+		/* Center the loader */
+		#loader {
+		  position: absolute;
+		  left: 50%;
+		  top: 50%;
+		  z-index: 1;
+		  width: 120px;
+		  height: 120px;
+		  margin: -76px 0 0 -76px;
+		  border: 16px solid #f3f3f3;
+		  border-radius: 50%;
+		  border-top: 16px solid #3498db;
+		  -webkit-animation: spin 2s linear infinite;
+		  animation: spin 1s linear infinite;
+		}
+		
+		@-webkit-keyframes spin {
+		  0% { -webkit-transform: rotate(0deg); }
+		  100% { -webkit-transform: rotate(360deg); }
+		}
+		
+		@keyframes spin {
+		  0% { transform: rotate(0deg); }
+		  100% { transform: rotate(360deg); }
+		}
+		
+		/* Add animation to "page content" */
+		.animate-bottom {
+		  position: relative;
+		  -webkit-animation-name: animatebottom;
+		  -webkit-animation-duration: 1s;
+		  animation-name: animatebottom;
+		  animation-duration: 1s
+		}
+		
+		@-webkit-keyframes animatebottom {
+		  from { bottom:-100px; opacity:0 } 
+		  to { bottom:0px; opacity:1 }
+		}
+		
+		@keyframes animatebottom { 
+		  from{ bottom:-100px; opacity:0 } 
+		  to{ bottom:0; opacity:1 }
+		}
+		
+		#myDiv {
+		  display: none;
+		  text-align: center;
+		}
+		</style>
+	<title>Home</title>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47692315-56"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-47692315-56');
+	</script>
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}">
+	<link id="theme-style" rel="stylesheet" type="text/css" href="">
+</head>
+<body onload="myFunction()" style="margin:0;">
+	<div id="loader"></div>
+
+	<div style="display:none;" id="myDiv" class="animate-bottom">
+		<section class="s1">
+			<div class="main-container">
+				<div class="greeting-wrapper">
+					<h1>Welcome to ThapSpace!</h1>
+				</div>
+	
+	
+				<div class="intro-wrapper">
+					{% include 'base/navbar.html' %}
+	
+	
+					<div class="right-column">
+	
+						<div>
+							<div id="preview">
+								<h3>So what is ThapSpace?</h3>
+								<p>‘ThapSpace’ aims at making engineering students of Thapar University
+									effectively utilize their 4 years in the college and to make them outshine from among the 
+									crowd of 1.5 million engineers graduating every year. The objective of our project is to 
+									develop a web app specifically for the students of TIET. As mentioned above the issues 
+									which are currently being faced by the students, so our web app shall include features like 
+									providing information at a common place regarding all the companies visiting the campus for 
+									placements or internships plus off campus notifications. It will also 
+									include a chatbot to allow juniors to interact with their seniors/alumni and discuss about 
+									projects, strategies to prepare and much more. Our web app shall display information of the 
+									placed or interned alumni in big companies. An additional feature of this web app includes a 
+									section which shall be dedicated to the Capstone Projects. 
+									</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	
+		<section class="s2">
+			<div class="main-container">
+	
+				<div class="about-wrapper">
+					<div class="about-me">
+						<h4>What made us do it?</h4>
+	
+						<p>We did a survey in Thapar University and asked students about the major issues faced by them in collge.</p>
+	
+						<p>The results we got were that students are not having a proper guidance for placements and shockingly most of them were in their third year.</p>
+	
+	
+						<hr>
+	
+						<h4>What we offer through ThapSpace?</h4>
+				
+						
+						<div id="skills">
+							<ol>
+								<li>A platform to get in touch with your seniors</li>
+								<li>Most Effective Ways to utilise your free time in University</li>
+								<li>Tips on Starting with coding</li>
+								<li>Basic and Advanced Interesting Python coding Projects</li>
+								<li>Must Read books while in university to get better understanding of world after 4 years.</li>
+								<li>Guidance about getting your dream Job</li>
+								<li>Exclusive Interviews of students placed in companies visiting Your Campus.</li>				
+							</ol>
+						</div>
+	
+					</div>
+	
+					
+					<div class="social-links img2" >
+						<h3>Survey results :-</h3>
+						<img id="social_img" src="{% static 'images/stats.jpg' %}">
+						
+						<img id="social_img" src="{% static 'images/year.png' %}">
+					</div>
+				</div>
+			</div>
+		</section>
+	
+		<section class="s1">
+			<div class="main-container">
+				<h3 style="text-align: center;">Latest posts:</h3>
+	
+				<div class="post-wrapper">
+					{% for post in posts %}
+					<div>
+						<div class="post">
+							<img class="thumbnail img1" src="{{post.thumbnail.url}}">
+							<div class="post-preview">
+								<h6 class="post-title">{{post.headline}}</h6>
+								<p class="post-intro">{{post.sub_headline}}</p>
+								<a href="{%  url 'post' post.slug %}">Read More</a>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+	
+				<p align="center">
+					<a href="{% url 'posts' %}">View More</a>
+				</p>
+			</div>
+		</section>
+	
+		<section class="s2">
+			<div class="main-container">
+				<p style="text-align: center;">Kindly have a look at FAQs first before asking your personal doubts</p>
+				<a href=""></a>
+				<h3 style="text-align: center;">Personal doubts are welcomed here!</h3>
+	
+				<form class="img2" id="contact-form" method="POST" action="{% url 'send_email' %}">
+					{% csrf_token %}
+					<a name="contact"></a>
+	
+					<label>Name</label>
+					<input required class="input-field" type="text" name="name">
+	
+					<label>Subject</label>
+					<input required class="input-field" type="text" name="subject">
+	
+					<label>Email</label>
+					<input required class="input-field" type="text" name="email">
+	
+					<label>Message</label>
+					<textarea required class="input-field" name="message"></textarea>
+	
+					<input id="submit-btn" type="submit" value="Send">
+				</form>
+			</div>
+		</section> 
+	</div>
+	
+</div>
+	<script>
+		var myVar;
+	
+		function myFunction() {
+		myVar = setTimeout(showPage, 1500);
+		}
+		
+		function showPage() {
+		document.getElementById("loader").style.display = "none";
+		document.getElementById("myDiv").style.display = "block";
+		}
+	</script>
+	<script type="text/javascript">
+		let static = "{% static 'css' %}"
+	</script>
+
+	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

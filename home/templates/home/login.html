@@ -1,0 +1,22 @@
+{% extends "home/main.html" %}
+{% block content %}
+
+<section id="login-page-wrapper">
+	
+	<form method="POST">
+		{% csrf_token %}
+		<h1>Member Login:</h1>
+		Username<br><input type="text" name="username" placeholder="Enter your username"><br><br>
+		Password<br><input type="password" name="password" placeholder="Enter your Password"><br><br>
+		<input type="submit" name="">
+	</form><br><br>
+</section>
+<a href="/register">Create Your Account</a>
+
+<div>
+	{% for message in messages %}
+	<h3>{{message}}</h3>
+	{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "home/main.html" %}
+{% block content %}
+	<h4><center>Register your account here.</center></h4><hr>
+	<form method="POST">
+		<div>
+			{% for message in messages %}
+			<h3>{{message}}</h3>
+			{% endfor %}
+		</div>
+		{% if error %}
+		<div>
+			{{error}}
+		</div>
+		{% endif %}
+		{% csrf_token %}
+		First Name <br><input type="text" name="first_name" placeholder="Enter your first Name"><br><br>
+		Last Name <br><input type="text" name="last_name" placeholder="Enter your last Name"><br><br>
+		Username <br><input type="text" name="username" placeholder="Enter your username Name"><br><br>
+		Email <br><input type="email" name="email" placeholder="Enter your email"><br><br>
+		Password<br><input type="password" name="password1" placeholder="Enter your password"><br><br>
+		Re-password <br><input type="password" name="password2" placeholder="Re-Enter your password"><br><br>
+		<button type="submit">  Register  </button> 
+</form><br>
+<div class="border-top pt 3" >
+	<small class="text-muted">
+		
+		<a href="/login">Already have an account?</a>
+	</small>
+</div>
+{% endblock %}

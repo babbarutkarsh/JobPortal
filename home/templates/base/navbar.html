@@ -1,0 +1,73 @@
+{% load static %}
+<div class="nav-wrapper">
+	<!-- Link around dots-wrapper added after tutorial video -->
+	<a href="{% url 'home' %}">
+		
+		<div class="dots-wrapper glow" >
+		<img src="{% static 'images/home1.png' %}" class="img1"width="40px">
+
+		</div>
+
+	</a>
+	
+	<div id="theme-options-wrapper">
+		<div data-mode="light" id="light-mode" class="theme-dot"></div>
+		<div data-mode="blue" id="blue-mode" class="theme-dot"></div>
+		<div data-mode="green" id="green-mode" class="theme-dot"></div>
+		<div data-mode="purple" id="purple-mode" class="theme-dot"></div>
+	</div>
+
+	<ul id="navigation">
+		<h2  id="close-btn" style="text-align: center">X</h2>
+		<li><a href="{% url 'home' %}#contact">Contact</a></li>
+		<li><a class="nav-link" href="{% url 'jobs' %}">Jobs</a></li>
+		{% if request.user.is_authenticated %}
+			<li><a href="{% url 'logout' %}">Logout</a></li>
+		{% else %}
+			<li><a href="{% url 'login' %}">Admin-Login</a></li>
+		{% endif %}
+	</ul>
+
+	<img id="menu-icon" src="{% static 'images/menu.png' %}">
+
+</div>
+
+
+<script type="text/javascript">
+	let menu = 'closed' 
+
+	let menuIcon = document.getElementById('menu-icon')
+	let navigation = document.getElementById('navigation')
+	let closeBtn = document.getElementById('close-btn')
+
+	menuIcon.addEventListener('click', toggleMenu)
+	closeBtn.addEventListener('click', toggleMenu)
+
+
+	function toggleMenu(){
+		if (menu == 'closed'){
+			navigation.style.display = 'block'
+			closeBtn.style.display = 'block'
+			menu = 'open'
+		}else{
+			navigation.style.display = 'none'
+			closeBtn.style.display = 'none'
+			menu = 'closed'
+		}
+	}
+
+	    
+	// Attaching the event listener function to window's resize event
+	
+	window.addEventListener("resize", function(){
+		let width = document.documentElement.clientWidth;
+		if(width > 1080){
+				navigation.style.display = 'block'
+		}else{
+				navigation.style.display = 'none'
+		}
+		menu = 'closed'
+		closeBtn.style.display = 'none'
+	});
+	
+</script>

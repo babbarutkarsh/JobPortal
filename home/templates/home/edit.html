@@ -1,0 +1,28 @@
+{% extends "home/main.html" %}
+{% block content %}
+ <div class="container">
+
+	<form method="POST">
+
+		<br>
+
+		{% csrf_token %} <!-- it is for security -->
+
+		{% for field in form %}
+
+		<div class="form-group row">
+			<label for="id_{{ field.name }}" class="col-2 col-form-label">{{ field.label }}</label>
+		</div>
+		<div class="col-10">
+			{{ field }}
+		</div>
+
+		{% endfor %}
+
+		<br>
+
+		<button type="submit" class="btn btn-primary" name="button">Edit Job</button>
+	</form>
+	
+</div>
+{% endblock content %}

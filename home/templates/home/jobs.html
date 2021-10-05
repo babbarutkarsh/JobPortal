@@ -1,0 +1,65 @@
+{% extends "home/main.html" %}
+{% block content %}
+
+ <div class="jumbotron">
+  <h1>Our Jobs</h1>
+  <br>
+  <div class="button-group">
+
+  {% if request.user.is_staff %}
+  <a href="{% url 'add_Job' %}" class="btn btn-warning btn-md" role="button">Add Job</a>
+  {% endif %}
+</div>
+
+<br>  
+   <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name = 'q'>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form><hr>
+
+  
+{% for post in posts %}
+ <div class="card mb-4">
+  <div class="card-body">
+
+    
+    {% if request.user.is_staff %}
+    <a href="{% url 'edit_Job' post.id %}" class="btn btn-warning btn-sm" role="button">Edit</a>
+    {% endif %}
+
+     {% if request.user.is_staff %}
+    <a href="{% url 'delete_Job' post.id %}" class="btn btn-danger btn-sm" role="button">Delete</a>
+    {% endif %}
+
+    <h2 class="card-title">{{ post.title }}</h2>
+    <p class="card-text">{{ post.details }}</p>
+  <div class="card-footer text-muted">{{ post.date_posted }}</div>
+  
+    <a href="{{ post.gform_link }}" class="btn btn-warning btn-sm" role="button">Apply</a>
+
+
+    <a href="{{ post.job_description.url }}" class="btn btn-warning btn-sm" download="">Download</a>
+
+</div>
+</div>
+
+{% endfor %}
+<hr>
+{% if posts.paginator.num_pages > 1 %}
+  <ul class="pagination justify-content-center mb-4">
+  <div class="pagination">
+      {% if posts.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}"> << Previous</a></li>
+      {% endif %}
+      {% if posts.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next >> </a></li>
+      {% endif %}
+      <!-- <span>{{ posts.number }}</span><span> of </span> <span>{{ posts.paginator.num_pages }}</span> -->
+  </div>
+</ul>
+
+{% endif %}
+{% endblock content %}
+
+ </div>
+ 
