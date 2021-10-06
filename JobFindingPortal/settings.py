@@ -19,6 +19,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'home.apps.HomeConfig',
     'Accounts.apps.AccountsConfig',
     'JobForm.apps.JobformConfig',

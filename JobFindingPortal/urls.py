@@ -3,6 +3,8 @@ from django.urls import path, include #for including home.urls
 from Accounts.views import register, login, logout
 from JobForm.views import applyJob_detail, applyJob
 
+admin.site.site_header = 'ThapSpace'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
